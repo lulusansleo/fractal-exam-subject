@@ -10,8 +10,9 @@ int my_getnbr_sign(char const *str)
     int r = 1;
 
     for (int i = 0; str[i] == '+' || str[i] == '-'; i++) {
-        if (str[i] == '-')
+        if (str[i] == '-') {
             r *= -1;
+        }
     }
     return r;
 }

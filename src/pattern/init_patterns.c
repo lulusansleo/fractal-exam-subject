@@ -5,8 +5,8 @@
 ** Init patterns
 */
 
-#include "lib/utils.c"
-#include "funcs/utils.c"
+#include "lib/utils.h"
+#include "funcs/utils.h"
 
 string *init_pattern(const string pattern)
 {

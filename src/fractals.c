@@ -8,6 +8,7 @@
 #include "funcs/errors.h"
 #include "funcs/pattern.h"
 #include "funcs/iteration.h"
+#include "funcs/utils.h"
 
 int fractals(int ac, char * const *argv)
 {
@@ -28,5 +29,7 @@ int fractals(int ac, char * const *argv)
         return 84;
     }
     pattern_manager(iteration, hash_pattern, point_pattern);
+    free_pattern(hash_pattern);
+    free_pattern(point_pattern);
     return 0;
 }

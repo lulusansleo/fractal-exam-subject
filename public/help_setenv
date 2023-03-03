@@ -1,7 +1,0 @@
-USAGE:
-	setenv <key> <value> [override]
-DESCRIPTION:
-	Set variable in shell environment
-	key         The name of the variable
-	value       The value of the variable
-	override    If override the existing value (0/1). The default value is 0

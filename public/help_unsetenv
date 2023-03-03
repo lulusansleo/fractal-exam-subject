@@ -1,5 +1,0 @@
-USAGE:
-	unsetenv <key>
-DESCRIPTION:
-	Unset variable in shell environment
-	key     The name of the variable

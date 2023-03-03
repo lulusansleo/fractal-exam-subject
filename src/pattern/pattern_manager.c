@@ -63,6 +63,8 @@ static string *recursive_pattern(string *prev_pattern,
     string const *to_write_pattern;
     boolean is_hash;
 
+    if (pattern == NULL)
+        return NULL;
     for (int i = 0; i < prev_size; i++) {
         coord.y = i;
         for (int j = 0; j < prev_size; j++) {
@@ -88,6 +90,9 @@ void pattern_manager(const int iterations, const string *hash_pattern,
     for (int i = 0; i < iterations; i++) {
         prev_pattern = recursive_pattern(prev_pattern,
             hash_pattern, point_pattern, size);
+        if (prev_pattern = NULL) {
+            return;
+        }
     }
     print_pattern(prev_pattern);
     free_pattern(prev_pattern);

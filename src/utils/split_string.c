@@ -43,7 +43,8 @@ static int count_alpha(const char *str, const char *split)
     return i;
 }
 
-static int cpy_char(const char *str, char **element, const char *split, int *count)
+static int cpy_char(const char *str, char **element, const char *split,
+    int *count)
 {
     if (!str_include(str[0], split)) {
         if (!(*count)) {

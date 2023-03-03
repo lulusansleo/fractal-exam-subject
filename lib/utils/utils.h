@@ -15,11 +15,9 @@ typedef size_t any;
 typedef char * string;
 typedef string str;
 
-typedef struct project {
-    char *name;
-    char *exe;
-    int min_args;
-    int max_args;
-} project_t;
+typedef struct vector {
+    int x;
+    int y;
+} vector_t;
 
 #endif //UTILS_H

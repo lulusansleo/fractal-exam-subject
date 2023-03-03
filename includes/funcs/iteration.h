@@ -8,6 +8,6 @@
 #ifndef ITERATION_H_
     #define ITERATION_H_
 
-int get_iteration(string arg);
+int get_iteration(const string arg);
 
 #endif

@@ -8,7 +8,7 @@
 #include "lib/my.h"
 #include "lib/utils.h"
 
-int get_iteration(string arg)
+int get_iteration(const string arg)
 {
     int iteration;
 

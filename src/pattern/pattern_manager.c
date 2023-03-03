@@ -43,9 +43,10 @@ static void write_pattern(vector_t coord,
     int x = 0;
     int y = 0;
 
-    for (int i = coord.y * size; i < coord.y * size + size; x++, i++) {
-        for (int j = coord.x * size; j < coord.x * size + size; y++, j++) {
-            pattern[i][j] = to_write_pattern[x][y];
+    for (int i = coord.y * size; i < coord.y * size + size; y++, i++) {
+        x = 0;
+        for (int j = coord.x * size; j < coord.x * size + size; x++, j++) {
+            pattern[i][j] = to_write_pattern[y][x];
         }
     }
 }

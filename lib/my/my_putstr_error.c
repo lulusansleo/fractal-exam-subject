@@ -5,12 +5,11 @@
 ** Task02 - Function my_putstr
 */
 
-void my_putchar_error(char c);
+#include <unistd.h>
+#include "my.h"
 
 int my_putstr_error(char const *str)
 {
-    for (int i = 0; str[i]; i++) {
-        my_putchar_error(str[i]);
-    }
+    write(2, str, my_strlen(str));
     return 84;
 }

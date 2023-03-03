@@ -5,12 +5,10 @@
 ** Task02 - Function my_putstr
 */
 
-void my_putchar(char c);
+#include "my.h"
 
 int my_putstr(char const *str)
 {
-    for (int i = 0; str[i]; i++) {
-        my_putchar(str[i]);
-    }
+    write(1, str, my_strlen(str));
     return 0;
 }

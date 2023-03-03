@@ -23,7 +23,7 @@ static boolean is_correct_pattern(const string *pattern, const int size)
     int p_size;
     int l_size;
 
-    for	(p_size = 0; pattern[p_size]; p_size++) {
+    for (p_size = 0; pattern[p_size]; p_size++) {
         for (l_size = 0; pattern[p_size][l_size]; l_size++);
         if (l_size != size) {
             return false;

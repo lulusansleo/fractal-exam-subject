@@ -33,7 +33,6 @@ static boolean is_correct_p_line(const string line, const int size)
 static boolean is_correct_pattern(const string *pattern, const int size)
 {
     int p_size;
-    int l_size;
 
     for (p_size = 0; pattern[p_size]; p_size++) {
         if (!is_correct_p_line(pattern[p_size], size)) {

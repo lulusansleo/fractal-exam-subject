@@ -27,6 +27,14 @@ static string *pattern_initializer(void)
     return pattern;
 }
 
+static void print_pattern(string const *pattern)
+{
+    for (int i = 0; pattern[i]; i++) {
+        my_putstr(pattern[i]);
+        my_putchar('\n');
+    }
+}
+
 static void write_pattern(vector_t coord, string *prev_pattern,
     string const *to_write_pattern,
     string *pattern)

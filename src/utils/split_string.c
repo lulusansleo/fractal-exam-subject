@@ -75,7 +75,7 @@ char **split_string(const char *str, const char *split)
 
     array[nb_split + 1] = 0;
     for (int i = 0; str[i]; i++) {
-        result_cp = cpy_char(&(str[i]), &(array[a]), split, &count);
+        result_cp = cpy_char(&(str[i]), &(array[j]), split, &count);
         if (result_cp == -1) {
             return NULL;
         }

@@ -6,7 +6,13 @@
 ##
 
 CC = gcc
-SRC = 	src/fractals.c
+SRC = 	src/fractals.c \
+	src/error_handler.c \
+	src/iteration.c \
+	src/pattern/pattern_manager.c \
+	src/pattern/init_patterns.c \
+	src/utils/pattern_allocation.c \
+	src/utils/split_string.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -19,14 +25,14 @@ NAME = fractals
 CPPFLAGS = -I includes
 
 LIB = -L lib -lmy -larray -lstring -lstr_builder
-CFLAGS = -Wall -Wextra -fsanitize=address
+CFLAGS = -Wall -Wextra #-fsanitize=address
 TEST_PARAMS = $(PARAMS) --coverage -lcriterion
 
 all: $(NAME)
 
 $(NAME): 	SRC += $(MAIN)
 $(NAME): 	$(OBJ) $(MAIN:.c=.o) lib
-			$(CC) $(OBJ) -o $(NAME) $(LIB) -fsanitize=address
+			$(CC) $(OBJ) -o $(NAME) $(LIB) #-fsanitize=address
 
 lib:
 		- make -C lib

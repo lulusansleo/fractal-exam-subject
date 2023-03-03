@@ -35,7 +35,7 @@ static void print_pattern(string const *pattern)
     }
 }
 
-static void write_pattern(vector_t coord, string *prev_pattern,
+static void write_pattern(vector_t coord,
     string const *to_write_pattern,
     string *pattern)
 {
@@ -44,7 +44,7 @@ static void write_pattern(vector_t coord, string *prev_pattern,
     int y = 0;
 
     for (int i = coord.y * size; i < coord.y * size + size; x++, i++) {
-        for (int j = coord.x * size; j < coord.w * size + size; y++, j++) {
+        for (int j = coord.x * size; j < coord.x * size + size; y++, j++) {
             pattern[i][j] = to_write_pattern[x][y];
         }
     }
@@ -55,8 +55,8 @@ static string *recursive_pattern(string *prev_pattern,
     string const *point_pattern,
     const int pattern_size)
 {
-    int prev_size
-    int curr_size = my_strlen(prev_pattern[0]) * pattern_size;
+    int prev_size = my_strlen(prev_pattern[0]);
+    int curr_size = prev_size * pattern_size;
     string *pattern = pattern_alloc(curr_size);
     vector_t coord = {0, 0};
     string const *to_write_pattern;
@@ -67,8 +67,8 @@ static string *recursive_pattern(string *prev_pattern,
         for (int j = 0; j < prev_size; j++) {
             coord.x = j;
             is_hash = prev_pattern[i][j] == '#';
-            current_pattern = is_hash ? hash_pattern : point_pattern;
-            write_pattern(coord, prev_pattern, to_write_pattern, pattern);
+            to_write_pattern = is_hash ? hash_pattern : point_pattern;
+            write_pattern(coord, to_write_pattern, pattern);
         }
     }
     free_pattern(prev_pattern);
@@ -78,14 +78,15 @@ static string *recursive_pattern(string *prev_pattern,
 void pattern_manager(const int iterations, const string *hash_pattern,
     const string *point_pattern)
 {
-    string *previous_pattern = pattern_initializer();
+    string *prev_pattern = pattern_initializer();
+    int size = my_strlen(hash_pattern[0]);
 
-    if (previous_pattern == NULL) {
+    if (prev_pattern == NULL) {
         return;
     }
-    for (int i = 0; i < iterations, i++) {
+    for (int i = 0; i < iterations; i++) {
         prev_pattern = recursive_pattern(prev_pattern,
-            hash_pattern, point_pattern);
+            hash_pattern, point_pattern, size);
     }
     print_pattern(prev_pattern);
     free_pattern(prev_pattern);

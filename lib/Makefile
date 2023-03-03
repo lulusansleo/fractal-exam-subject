@@ -12,7 +12,6 @@ all:
 		make -C array
 		make -C str_builder
 		make -C string
-		make -C errors
 		make -C bool
 		make -C utils
 
@@ -21,7 +20,6 @@ clean:
 		- make -C array clean
 		- make -C str_builder clean
 		- make -C string clean
-		- make -C errors clean
 
 fclean: clean
 		- rm *.a

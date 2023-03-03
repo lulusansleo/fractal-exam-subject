@@ -18,7 +18,7 @@ NAME = fractals
 
 CPPFLAGS = -I includes
 
-LIB = -L lib -lmy -larray -lstring -lerrors -lstr_builder
+LIB = -L lib -lmy -larray -lstring -lstr_builder
 CFLAGS = -Wall -Wextra -fsanitize=address
 TEST_PARAMS = $(PARAMS) --coverage -lcriterion
 

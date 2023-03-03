@@ -1,0 +1,13 @@
+# Global
+/.vscode/
+/.idea/
+*.a
+*.o
+*.log
+*~
+
+# Binary
+fractals
+
+# Private
+/private/

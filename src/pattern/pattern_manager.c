@@ -90,7 +90,7 @@ void pattern_manager(const int iterations, const string *hash_pattern,
     for (int i = 0; i < iterations; i++) {
         prev_pattern = recursive_pattern(prev_pattern,
             hash_pattern, point_pattern, size);
-        if (prev_pattern = NULL) {
+        if (prev_pattern == NULL) {
             return;
         }
     }

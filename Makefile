@@ -25,14 +25,14 @@ NAME = fractals
 CPPFLAGS = -I includes
 
 LIB = -L lib -lmy
-CFLAGS = -Wall -Wextra #-fsanitize=address
+CFLAGS = -Wall -Wextra
 TEST_PARAMS = $(PARAMS) --coverage -lcriterion
 
 all: $(NAME)
 
 $(NAME): 	SRC += $(MAIN)
 $(NAME): 	$(OBJ) $(MAIN:.c=.o) lib
-			$(CC) $(OBJ) -o $(NAME) $(LIB) #-fsanitize=address
+			$(CC) $(OBJ) -o $(NAME) $(LIB)
 
 lib:
 		- make -C lib

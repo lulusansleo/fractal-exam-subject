@@ -14,7 +14,7 @@ SRC = 	src/fractals.c \
 		src/utils/pattern_allocation.c \
 		src/utils/split_string.c
 
-TU_SRC =
+TU_SRC = 	tests/fractals.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -69,7 +69,7 @@ valgrind: 	re
 unit_tests: CFLAGS += --coverage
 unit_tests: LDLIBS += -lcriterion
 unit_tests: SRC += $(TU_SRC)
-unit_tests: $(OBJ) lib
+unit_tests: $(OBJ) $(TU_SRC:.c=.o) lib
 			$(CC) $(OBJ) -o $(TU_NAME) $(LDFLAGS) $(LDLIBS) $(CFLAGS)
 
 tests_run: 	unit_tests

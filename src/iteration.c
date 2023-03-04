@@ -13,8 +13,8 @@ int get_iteration(const string arg)
     int iteration;
 
     iteration = my_getint(arg);
-    if (!my_str_isnum(arg) || iteration < 0) {
-        my_putstr_error("fractals: Incorrect nbr of iteration");
+    if (!arg[0] || !my_str_isnum(arg) || iteration < 0) {
+        my_putstr_error("fractals: Incorrect nbr of iteration\n");
         return -1;
     }
     return iteration;

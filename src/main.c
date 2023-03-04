@@ -5,7 +5,7 @@
 ** Main
 */
 
-int fractals(int ac, char * const *av);
+#include "funcs/core.h"
 
 int main(int ac, char * const *av)
 {

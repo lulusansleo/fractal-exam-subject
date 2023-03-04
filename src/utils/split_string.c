@@ -9,7 +9,7 @@
 
 static int str_include(const char c, const char *split)
 {
-    for (int i = 0; split[i]; i++) {
+    for (int i = 0; split[i] != 0; i++) {
         if (c == split[i])
             return 1;
     }
@@ -19,27 +19,27 @@ static int str_include(const char c, const char *split)
 static int count_non_alpha(const char *str, const char *split)
 {
     int n = 0;
-    int hasC = 0;
+    int has_count = 0;
 
-    if (!str[0]) {
+    if (str[0] == 0) {
         return -1;
     }
-    for (int i = 0; str[i]; i++) {
+    for (int i = 0; str[i] != 0; i++) {
         if (str_include(str[i], split)) {
-            n = hasC ? n + 1 : n;
-            hasC = 0;
+            n = has_count ? n + 1 : n;
+            has_count = 0;
         } else {
-            hasC = 1;
+            has_count = 1;
         }
     }
-    return hasC ? n : n - 1;
+    return has_count ? n : n - 1;
 }
 
 static int count_alpha(const char *str, const char *split)
 {
     int i = 0;
 
-    for (; str[i] && !str_include(str[i], split); i++);
+    for (; str[i] != 0 && !str_include(str[i], split); i++);
     return i;
 }
 
@@ -47,7 +47,7 @@ static int cpy_char(const char *str, char **element, const char *split,
     int *count)
 {
     if (!str_include(str[0], split)) {
-        if (!(*count)) {
+        if (*count == 0) {
             *element = malloc(sizeof(char *) * (count_alpha(str, split) + 1));
         }
         if (*element == NULL) {
@@ -57,7 +57,7 @@ static int cpy_char(const char *str, char **element, const char *split,
         *count = *count + 1;
         return 0;
     }
-    if (!(*count)) {
+    if (*count == 0) {
         return 0;
     }
     (*element)[*count] = 0;

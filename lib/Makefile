@@ -8,15 +8,15 @@
 all:
 		- mkdir ../includes
 		- mkdir ../includes/lib
-		make -C my
-		make -C bool
-		make -C utils
+		$(MAKE) -C my
+		$(MAKE) -C bool
+		$(MAKE) -C utils
 
 clean:
-		- make -C my clean
+		- $(MAKE) -C my clean
 
 fclean: clean
-		- rm *.a
+		- $(RM) *.a
 
 re: fclean all
 

@@ -7,3 +7,5 @@
 
 all:
 	cp bool.h ../../includes/lib
+
+.PHONY: all

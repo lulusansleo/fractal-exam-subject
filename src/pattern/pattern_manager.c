@@ -40,7 +40,7 @@ static void write_pattern(vector_t coord,
     string *pattern)
 {
     int size = my_strlen(to_write_pattern[0]);
-    int x = 0;
+    int x;
     int y = 0;
 
     for (int i = coord.y * size; i < coord.y * size + size; y++, i++) {
@@ -52,8 +52,7 @@ static void write_pattern(vector_t coord,
 }
 
 static string *recursive_pattern(string *prev_pattern,
-    string const *hash_pattern,
-    string const *point_pattern,
+    string const *hash_pattern, string const *point_pattern,
     const int pattern_size)
 {
     int prev_size = my_strlen(prev_pattern[0]);
@@ -96,5 +95,4 @@ void pattern_manager(const int iterations, const string *hash_pattern,
     }
     print_pattern(prev_pattern);
     free_pattern(prev_pattern);
-    return;
 }

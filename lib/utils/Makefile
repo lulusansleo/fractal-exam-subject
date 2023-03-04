@@ -7,3 +7,5 @@
 
 all:
 	cp utils.h ../../includes/lib
+
+.PHONY: all

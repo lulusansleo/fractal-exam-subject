@@ -1,14 +1,28 @@
-# Global
+# IDE
 /.vscode/
 /.idea/
+
+# Lib
 *.a
+
+# Compilation
 *.o
+
+# Banana
 *.log
+
+# EMACS Residual
 *~
 *#
+\#*
 
-# Binary
+# Unit Tests
+*.gcda
+*.gcno
+
+# Binaries
 fractals
+test_fractals
 
 # Private
 /private/

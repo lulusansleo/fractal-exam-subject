@@ -23,14 +23,16 @@ LIB_NAME = lib$(NAME).a
 all: 	$(NAME)
 
 $(NAME): $(OBJ)
-		ar rc $(LIB_NAME) $(OBJ)
+		$(AR) rc $(LIB_NAME) $(OBJ)
 		cp $(LIB_NAME) ../
 		cp $(HEADER) ../../includes/lib
 
 clean:
-		- rm -f $(OBJ)
-		- rm -f $(LIB_NAME)
+		- $(RM) $(OBJ)
+		- $(RM) $(LIB_NAME)
 
 fclean: clean
 
 re: 	fclean all
+
+.PHONY: all clean fclean re

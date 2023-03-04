@@ -10,4 +10,4 @@
 
 int get_iteration(const string arg);
 
-#endif
+#endif /* ITERATION_H_ */

@@ -14,44 +14,44 @@ SRC = 	src/fractals.c \
 	src/utils/pattern_allocation.c \
 	src/utils/split_string.c
 
-OBJ = $(SRC:.c=.o)
+TU_SRC =
 
-TEST_SRC =
+OBJ = $(SRC:.c=.o)
 
 MAIN = src/main.c
 
 NAME = fractals
+TU_NAME = test_$(NAME)
 
-CPPFLAGS = -I includes
+EXEC = ./$(NAME)
+TU_EXEC = ./$(TU_NAME)
 
-LIB = -L lib -lmy
+VALGRIND_TEST_PARAMS = 4 "\#\#\#@\#.\#@\#\#\#" "...@...@..."
+
+LDFLAGS = -L lib
+LDLIBS = -lmy
+
 CFLAGS = -Wall -Wextra
-TEST_PARAMS = $(PARAMS) --coverage -lcriterion
+CPPFLAGS = -iquote includes
 
 all: $(NAME)
 
 $(NAME): 	SRC += $(MAIN)
 $(NAME): 	$(OBJ) $(MAIN:.c=.o) lib
-			$(CC) $(OBJ) -o $(NAME) $(LIB)
+			$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) $(LDLIBS) $(CFLAGS)
 
 lib:
-		- make -C lib
-
-unit_tests: fclean $(NAME)
-			$(CC) $(TEST_SRC) -o test_$(NAME) $(SRC) $(TEST_PARAMS) $(CPPFLAGS)
-
-tests_run: 	unit_tests
-			./test_$(NAME)
+		$(MAKE) -C lib
 
 clean:
-		- rm $(OBJ) $(MAIN:.c=.o)
+		- $(RM) $(OBJ) $(MAIN:.c=.o)
 
 fclean: clean
-		- make -C lib fclean
-		- rm $(NAME) *.gcda *.gcno
+		- $(MAKE) -C lib fclean
+		- $(RM) $(NAME) *.gcda *.gcno
 
 re: fclean
-	- make all
+	$(MAKE) all
 
 coding_style: fclean
 				- mkdir "private"
@@ -59,7 +59,21 @@ coding_style: fclean
 				coding-style . private/style
 				cat private/style/coding-style-reports.log
 
-debug: 	re
-		valgrind ./$(NAME) $@
+asan: CFLAGS += -fsanitize=address
+asan: CPPFLAGS += -fsanitize=address
+asan: fclean $(NAME)
 
-.PHONY: all unit_tests tests_run lib clean fclean re coding_style debug
+valgrind: 	re
+		valgrind $(EXEC) $(VALGRIND_TEST_PARAMS)
+
+unit_tests: CFLAGS += --coverage
+unit_tests: LDLIBS += -lcriterion
+unit_tests: SRC += $(TU_SRC)
+unit_tests: $(OBJ) lib
+			$(CC) $(OBJ) -o $(TU_NAME)
+
+tests_run: 	unit_tests
+			$(TU_EXEC)
+
+
+.PHONY: all lib clean fclean re coding_style asan valgrind unit_tests tests_run

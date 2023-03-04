@@ -10,6 +10,9 @@
 #ifndef UTILS_H
     #define UTILS_H
 
+    #define DEFAULT_EXIT (0)
+    #define ERROR_EXIT (84)
+
 typedef size_t any;
 
 typedef char * string;

@@ -8,10 +8,11 @@
 #include "lib/bool.h"
 #include "lib/my.h"
 #include "lib/utils.h"
+#include "fractals.h"
 
 boolean is_correct_params(const int ac)
 {
-    if (ac != 4) {
+    if (ac != EXPECTED_NB_PARAMS) {
         my_putstr_error("fractals: Incorrect number of params !\n");
         return false;
     }
@@ -22,7 +23,7 @@ static boolean is_correct_p_line(const string line, const int size)
 {
     int i;
 
-    for (i = 0; line[i]; i++) {
+    for (i = 0; line[i] != 0; i++) {
         if (line[i] != '#' && line[i] != '.') {
             return false;
         }
@@ -34,7 +35,7 @@ static boolean is_correct_pattern(const string *pattern, const int size)
 {
     int p_size;
 
-    for (p_size = 0; pattern[p_size]; p_size++) {
+    for (p_size = 0; pattern[p_size] != 0; p_size++) {
         if (!is_correct_p_line(pattern[p_size], size)) {
             return false;
         }

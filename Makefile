@@ -7,12 +7,12 @@
 
 CC = gcc
 SRC = 	src/fractals.c \
-	src/error_handler.c \
-	src/iteration.c \
-	src/pattern/pattern_manager.c \
-	src/pattern/init_patterns.c \
-	src/utils/pattern_allocation.c \
-	src/utils/split_string.c
+		src/error_handler.c \
+		src/iteration.c \
+		src/pattern/pattern_manager.c \
+		src/pattern/init_patterns.c \
+		src/utils/pattern_allocation.c \
+		src/utils/split_string.c
 
 TU_SRC =
 
@@ -53,7 +53,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-coding_style: fclean
+coding_style: 	fclean
 				- mkdir "private"
 				- mkdir "private/style"
 				coding-style . private/style
@@ -64,16 +64,20 @@ asan: CPPFLAGS += -fsanitize=address
 asan: fclean $(NAME)
 
 valgrind: 	re
-		valgrind $(EXEC) $(VALGRIND_TEST_PARAMS)
+			valgrind $(EXEC) $(VALGRIND_TEST_PARAMS)
 
 unit_tests: CFLAGS += --coverage
 unit_tests: LDLIBS += -lcriterion
 unit_tests: SRC += $(TU_SRC)
 unit_tests: $(OBJ) lib
-			$(CC) $(OBJ) -o $(TU_NAME)
+			$(CC) $(OBJ) -o $(TU_NAME) $(LDFLAGS) $(LDLIBS) $(CFLAGS)
 
 tests_run: 	unit_tests
 			$(TU_EXEC)
 
+tests_coverage: tests_run
+				gcovr --exclude tests/
+				gcovr --exclude tests/ --branches
 
-.PHONY: all lib clean fclean re coding_style asan valgrind unit_tests tests_run
+
+.PHONY: all lib clean fclean re coding_style asan valgrind unit_tests tests_run tests_coverage

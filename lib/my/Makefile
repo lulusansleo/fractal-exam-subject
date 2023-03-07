@@ -28,11 +28,12 @@ $(NAME): $(OBJ)
 		cp $(HEADER) ../../includes/lib
 
 clean:
-		- $(RM) $(OBJ)
-		- $(RM) $(LIB_NAME)
+		$(RM) $(OBJ)
+		$(RM) $(LIB_NAME)
 
 fclean: clean
 
-re: 	fclean all
+re: 	fclean
+		$(MAKE) all
 
 .PHONY: all clean fclean re

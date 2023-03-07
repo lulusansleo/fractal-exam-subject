@@ -5,18 +5,19 @@
 ## Makefile 1
 ##
 
+MKDIR = mkdir -p
+
 all:
-		- mkdir ../includes
-		- mkdir ../includes/lib
+		$(MKDIR) ../includes/lib
 		$(MAKE) -C my
 		$(MAKE) -C bool
 		$(MAKE) -C utils
 
 clean:
-		- $(MAKE) -C my clean
+		$(MAKE) -C my clean
 
 fclean: clean
-		- $(RM) *.a
+		$(RM) *.a
 
 re: fclean all
 
